@@ -23,3 +23,54 @@
 
     --> books.toscrape.com → The domain the spider is allowed to crawl.
 
+4)Install ipython.
+    Python is an enhanced interactive Python shell used in web scraping for testing, debugging, and optimizing scripts with features like auto-completion, magic commands, and rich output support.
+
+    command to install iython -
+    --> pip install ipython
+
+    --> scrapy shell
+       
+
+       Inside the scrapy shell :-
+        --> fetch("https://books.toscrape.com")
+        --> response.css("div.product_pod h3 a::attr(href)").get() ## gives the title of each product that is inside the h3 tag and a tag
+
+
+
+5) Now we modify the parse function to extract the book name,price and url 
+
+   
+    def parse(self, response):
+        books = response.css('article.product_pod')
+
+        for book in books:
+
+            yield{ # this just extract the name ,price and url from the first page
+                'name' : book.css('h3 a::text').get() ,
+                'price' : book.css('.product_price .price_color::text').get() ,
+                'image_url' : book.css('h3 a').attrib['href'],
+            }
+        
+        next_page = response.css('li.next a').attrib['href']  # next page url dinxa
+
+        if next_page is not None:
+
+            if 'catalogue/' in next_page:
+                next_page_url = 'https://books.toscrape.com/' + next_page 
+            else:
+                next_page_url = 'https://books.toscrape.com/catalogue/' + next_page 
+
+            yield response.follow(next_page_url, callback= self.parse) # this will call the parse function again on the next page
+ 
+ 
+
+ 6) Now we run the spider using the following command:
+    
+    --> scrapy crawl bookspider
+
+7) to save the extraction in csv/jsom format
+    --> scrapy crawl bookspider -o books.csv
+    or
+    --> scrapy crawl bookspider -o books.json
+
