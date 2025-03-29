@@ -1,0 +1,25 @@
+### Building the first scrapy spider
+
+
+1) Create a scrapy project using the following command:
+
+    --> scrapy startproject bookscraper
+    replace bookscraper with your project name
+
+2) Navigate to the project directory
+
+3) Navigate to the spiders directory and write the folowing command :
+
+    --> scrapy genspider bookspider books.toscrape.com
+
+    It creates a new Scrapy spider named bookspider that is restricted to scraping only pages from books.toscrape.com.
+
+
+    Breakdown of the command:
+
+    --> scrapy genspider → Generates a new spider template.
+
+    --> bookspider → The name of the spider.
+
+    --> books.toscrape.com → The domain the spider is allowed to crawl.
+
