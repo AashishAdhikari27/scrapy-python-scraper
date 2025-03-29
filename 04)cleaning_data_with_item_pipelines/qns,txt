@@ -1,0 +1,23 @@
+## What Are Scrapy Items?
+
+Scrapy Items are a predefined data structure that holds your data.
+
+Instead of yielding your scraped data in the form of a dictionary for example, you define a Item schema beforehand in your items.py file and use this schema when scraping data.
+
+This enables you to quickly and easily check what structured data you are collecting in your project, it will raise exceptions if you try and create incorrect data with your Item.
+
+Because of this, using Scrapy Items have a number of advantages:
+
+    Structures your data and gives it a clear schema.
+    Enables you to easily clean and process your scraped data.
+    Enables you to validate, deduplicate and monitor your data feeds.
+    Enables you to easily store and export your data with Scrapy Feed Exports.
+    Makes using Scrapy Item Pipelines & Item Loaders.
+
+Scrapy supports multiple types of data formats that are automatically converted into Scrapy Items when yielded:
+
+    Dictionaries
+    Dataclass Objects
+    Attrs Objects
+
+However, defining your own Item object in your items.py file is normally the best option.
