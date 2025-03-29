@@ -1,0 +1,14 @@
+
+
+## Starting a Scrapy Project on Ubuntu
+
+    # Step 1: Activate the Virtual Environment
+        ==> source virtual_env_folder/bin/activate
+
+    # Step 2: Install Scrapy
+        ==> pip install scrapy
+
+    # Step 3: Create a Scrapy Project
+        ==> scrapy startproject my_project
+
+        (Replace 'my_project' with your desired project name)
